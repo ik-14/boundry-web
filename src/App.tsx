@@ -1,8 +1,160 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ContactButton } from './components/ContactButton'
 import { TechnologyCard } from './components/TechnologyCard'
 import { technologies } from './data/technologies'
 import { useSiteMotion } from './motion/useSiteMotion'
+
+function InsuranceCaseVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const playRequestRef = useRef(0)
+  const [isInView, setIsInView] = useState(false)
+  const [isPageVisible, setIsPageVisible] = useState(() => !document.hidden)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  )
+  const [hasExplicitPlay, setHasExplicitPlay] = useState(false)
+  const [isUserPaused, setIsUserPaused] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [hasStarted, setHasStarted] = useState(false)
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false)
+  const [hasPlaybackError, setHasPlaybackError] = useState(false)
+
+  useEffect(() => {
+    const video = videoRef.current
+    return () => {
+      playRequestRef.current += 1
+      video?.pause()
+    }
+  }, [])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const onMotionChange = () => {
+      setPrefersReducedMotion(reducedMotion.matches)
+      // A newly selected reduced-motion preference takes effect immediately.
+      if (reducedMotion.matches) setHasExplicitPlay(false)
+    }
+    const onVisibilityChange = () => setIsPageVisible(!document.hidden)
+    reducedMotion.addEventListener('change', onMotionChange)
+    document.addEventListener('visibilitychange', onVisibilityChange)
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsInView(entry.isIntersecting && entry.intersectionRatio >= 0.2)
+    }, { threshold: [0, 0.2] })
+    observer.observe(video)
+
+    return () => {
+      observer.disconnect()
+      reducedMotion.removeEventListener('change', onMotionChange)
+      document.removeEventListener('visibilitychange', onVisibilityChange)
+    }
+  }, [])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    let cancelled = false
+    const shouldPlay = isInView && isPageVisible && !isUserPaused &&
+      (!prefersReducedMotion || hasExplicitPlay) && !autoplayBlocked && !hasPlaybackError
+
+    if (shouldPlay) {
+      video.play().catch((error: unknown) => {
+        // Leaving the viewport can legitimately interrupt a pending play request.
+        if (cancelled || (error instanceof DOMException && error.name === 'AbortError')) return
+        if (error instanceof DOMException && error.name === 'NotSupportedError') {
+          setHasPlaybackError(true)
+        } else {
+          setAutoplayBlocked(true)
+        }
+      })
+    } else {
+      playRequestRef.current += 1
+      video.pause()
+    }
+
+    return () => {
+      cancelled = true
+    }
+  }, [isInView, isPageVisible, isUserPaused, prefersReducedMotion, hasExplicitPlay, autoplayBlocked, hasPlaybackError])
+
+  const showPoster = !hasStarted || (prefersReducedMotion && !hasExplicitPlay) || hasPlaybackError
+  const togglePlayback = () => {
+    const video = videoRef.current
+    if (!video) return
+
+    if (isPlaying) {
+      playRequestRef.current += 1
+      video.pause()
+      setIsUserPaused(true)
+    } else {
+      if (document.hidden) return
+      if (!isInView) {
+        video.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'instant' })
+        // Keep the immediate gesture request alive until the observer catches up.
+        setIsInView(true)
+      }
+      setHasExplicitPlay(true)
+      setIsUserPaused(false)
+      setAutoplayBlocked(false)
+      // Keep this call inside the click gesture for browsers that gate playback.
+      const request = ++playRequestRef.current
+      video.play().catch((error: unknown) => {
+        if (request !== playRequestRef.current) return
+        if (error instanceof DOMException && error.name === 'AbortError') return
+        if (error instanceof DOMException && error.name === 'NotSupportedError') {
+          setHasPlaybackError(true)
+        } else {
+          setAutoplayBlocked(true)
+        }
+      })
+    }
+  }
+
+  return (
+    <section className="process-film" aria-labelledby="process-title">
+      <div className="process-film-heading section-split" data-reveal>
+        <h2 id="process-title">From technical detail to an underwriting case.</h2>
+        <p>Your deployment, performance and safety data become a structured picture of risk, helping insurers assess coverage, terms and pricing.</p>
+      </div>
+      <figure className="process-film-figure">
+        <div className="process-film-media">
+          <video
+            id="insurance-case-video"
+            ref={videoRef}
+            width="1080"
+            height="810"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/assets/boundry-insurance-case-poster.jpg"
+            aria-hidden="true"
+            onPlaying={() => { setIsPlaying(true); setHasStarted(true) }}
+            onPause={() => setIsPlaying(false)}
+            onError={() => { setHasPlaybackError(true); setIsPlaying(false) }}
+          >
+            <source src="/assets/boundry-insurance-case.webm" type="video/webm" />
+            <source src="/assets/boundry-insurance-case.mp4" type="video/mp4" />
+          </video>
+          {showPoster && <img className="process-film-poster" src="/assets/boundry-insurance-case-poster.jpg" width="1080" height="810" alt="" loading="lazy" decoding="async" />}
+        </div>
+        <figcaption className="process-film-description">Technical and operational data from robotics, autonomous systems and AI becomes a structured view of risk, helping insurers assess coverage, terms and pricing.</figcaption>
+        <div className="process-film-controls">
+          {hasPlaybackError ? <p>Showing a still image of our approach.</p> : (
+            <button className="process-film-toggle" type="button" onClick={togglePlayback} aria-controls="insurance-case-video">
+              <svg viewBox="0 0 20 20" aria-hidden="true">{isPlaying ? <><path d="M6 4v12M14 4v12" /></> : <path d="m6 3 10 7-10 7Z" />}</svg>
+              <span>{isPlaying ? 'Pause animation' : hasStarted && !showPoster ? 'Resume animation' : 'Play animation'}</span>
+            </button>
+          )}
+        </div>
+      </figure>
+    </section>
+  )
+}
 
 function App() {
   const siteRef = useRef<HTMLDivElement>(null)
@@ -38,6 +190,8 @@ function App() {
               <p>Emerging technologies can have limited claims history and unfamiliar failure modes. We use technical and operational data to give insurers the evidence to assess these risks.</p>
             </section>
 
+            <InsuranceCaseVideo />
+
             <section className="evidence" aria-labelledby="evidence-title">
               <div className="section-heading" data-reveal><h2 id="evidence-title">Start with how it actually works.</h2><p>The evidence behind the insurance decision</p></div>
               <div className="domain-grid">
@@ -55,15 +209,6 @@ function App() {
             <section className="partner-panel" aria-labelledby="partners-title" data-reveal>
               <div><p className="section-label">For brokers, underwriters and insurers</p><h2 id="partners-title">Understand new risks.<br />Reach new customers.</h2></div>
               <div><p>We bring you frontier-tech companies seeking specialist cover, together with the technical evidence to assess them.</p><p>Use a structured view of their operations, failure modes and controls to model exposure and inform pricing.</p><ContactButton variant="outline">Discuss a partnership</ContactButton></div>
-            </section>
-
-            <section className="process" aria-labelledby="process-title">
-              <h2 id="process-title" data-reveal>From technical detail to an underwriting case.</h2>
-              <ol className="process-list">
-                <li data-reveal><h3>Understand the deployment</h3><p>Map what the technology does, where it operates and what it can affect.</p></li>
-                <li data-reveal><h3>Model the exposure</h3><p>Bring together performance data, failure modes and safeguards to build a structured view of risk.</p></li>
-                <li data-reveal><h3>Support the insurance decision</h3><p>Connect the evidence to discussions with brokers and insurers about coverage, terms and pricing.</p></li>
-              </ol>
             </section>
 
             <section className="closing" aria-labelledby="closing-title" data-reveal><h2 id="closing-title">Pursue the upside.<br />Plan for the downside.</h2><ContactButton variant="butter" /></section>
