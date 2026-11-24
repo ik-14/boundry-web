@@ -35,4 +35,6 @@ Animations respect reduced-motion and coarse-pointer preferences. Card details w
 
 The explanatory film follows the risk-picture introduction and precedes the sector details; the hero keeps its original collage. Its editable Hyperframes source is in `../boundry-homepage-loop/`.
 
+The 14-second film is rendered natively at 2880 × 2160 for sharp playback on high-density displays. The website uses `boundry-insurance-case-2160p.webm` with an MP4 fallback and a matching lossless `boundry-insurance-case-poster-2160p.webp` still. The earlier media files remain available for cached pages.
+
 The film plays silently when visible, pauses offscreen or in hidden tabs, and preserves manual pause. Reduced-motion visitors see the final insurance-case still and can choose to play. Playback failures retain the still. `InsuranceCaseVideo` in `src/App.tsx` owns this behavior.

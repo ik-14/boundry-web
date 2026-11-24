@@ -125,22 +125,22 @@ function InsuranceCaseVideo() {
           <video
             id="insurance-case-video"
             ref={videoRef}
-            width="1080"
-            height="810"
+            width="2880"
+            height="2160"
             muted
             loop
             playsInline
             preload="metadata"
-            poster="/assets/boundry-insurance-case-poster.jpg"
+            poster="/assets/boundry-insurance-case-poster-2160p.webp"
             aria-hidden="true"
             onPlaying={() => { setIsPlaying(true); setHasStarted(true) }}
             onPause={() => setIsPlaying(false)}
             onError={() => { setHasPlaybackError(true); setIsPlaying(false) }}
           >
-            <source src="/assets/boundry-insurance-case.webm" type="video/webm" />
-            <source src="/assets/boundry-insurance-case.mp4" type="video/mp4" />
+            <source src="/assets/boundry-insurance-case-2160p.webm" type="video/webm" />
+            <source src="/assets/boundry-insurance-case-2160p.mp4" type="video/mp4" />
           </video>
-          {showPoster && <img className="process-film-poster" src="/assets/boundry-insurance-case-poster.jpg" width="1080" height="810" alt="" loading="lazy" decoding="async" />}
+          {showPoster && <img className="process-film-poster" src="/assets/boundry-insurance-case-poster-2160p.webp" width="2880" height="2160" alt="" loading="lazy" decoding="async" />}
         </div>
         <figcaption className="process-film-description">Technical and operational data from robotics, autonomous systems and AI becomes a structured view of risk, helping insurers assess coverage, terms and pricing.</figcaption>
         <div className="process-film-controls">
