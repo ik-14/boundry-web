@@ -4,7 +4,7 @@ import { TechnologyCard } from './components/TechnologyCard'
 import { technologies } from './data/technologies'
 import { useSiteMotion } from './motion/useSiteMotion'
 
-function InsuranceCaseVideo() {
+function NextChapterVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const playRequestRef = useRef(0)
   const [isInView, setIsInView] = useState(false)
@@ -115,39 +115,41 @@ function InsuranceCaseVideo() {
   }
 
   return (
-    <section className="process-film" id="approach" aria-labelledby="process-title">
+    <section className="process-film" id="belief" aria-labelledby="process-title">
       <div className="process-film-heading section-split" data-reveal>
-        <h2 id="process-title">Make the case for cover.</h2>
-        <p>We assess how your system works, what can go wrong and the safeguards in place.</p>
+        <h2 id="process-title">New technology changes<br className="desktop-break" /> what we need to insure.</h2>
+        <p>Our belief: AI will take on more work in the physical and digital world. Insurance needs to understand the systems doing that work.</p>
       </div>
       <figure className="process-film-figure">
-        <div className="process-film-media">
-          <video
-            id="insurance-case-video"
-            ref={videoRef}
-            width="2880"
-            height="2160"
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/assets/boundry-risk-intelligence-poster-2160p.webp"
-            aria-hidden="true"
-            onPlaying={() => { setIsPlaying(true); setHasStarted(true) }}
-            onPause={() => setIsPlaying(false)}
-            onError={() => { setHasPlaybackError(true); setIsPlaying(false) }}
-          >
-            <source src="/assets/boundry-risk-intelligence-2160p.webm" type="video/webm" />
-            <source src="/assets/boundry-risk-intelligence-2160p.mp4" type="video/mp4" />
-          </video>
-          {showPoster && <img className="process-film-poster" src="/assets/boundry-risk-intelligence-poster-2160p.webp" width="2880" height="2160" alt="" loading="lazy" decoding="async" />}
+        <div className="film-shell">
+          <div className="process-film-media">
+            <video
+              id="insurance-case-video"
+              ref={videoRef}
+              width="1920"
+              height="1080"
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/assets/boundry-next-chapter-poster.webp"
+              aria-hidden="true"
+              onPlaying={() => { setIsPlaying(true); setHasStarted(true) }}
+              onPause={() => setIsPlaying(false)}
+              onError={() => { setHasPlaybackError(true); setIsPlaying(false) }}
+            >
+              <source src="/assets/boundry-next-chapter.webm" type="video/webm" />
+              <source src="/assets/boundry-next-chapter.mp4" type="video/mp4" />
+            </video>
+            {showPoster && <img className="process-film-poster" src="/assets/boundry-next-chapter-poster.webp" width="1920" height="1080" alt="" loading="lazy" decoding="async" />}
+          </div>
         </div>
-        <figcaption className="process-film-description">Deployment details, failure scenarios and safety evidence become a structured risk profile that informs insurance coverage, terms and pricing.</figcaption>
+        <figcaption className="process-film-description">Archival industry gives way to connected computing, then physical and digital AI. The film follows how technology changes the world's work and closes with Boundry's belief: insurance for what comes next.</figcaption>
         <div className="process-film-controls">
-          {hasPlaybackError ? <p>Showing a still image of our approach.</p> : (
+          {hasPlaybackError ? <p>Showing a still image of our story.</p> : (
             <button className="process-film-toggle" type="button" onClick={togglePlayback} aria-controls="insurance-case-video">
               <svg viewBox="0 0 20 20" aria-hidden="true">{isPlaying ? <><path d="M6 4v12M14 4v12" /></> : <path d="m6 3 10 7-10 7Z" />}</svg>
-              <span>{isPlaying ? 'Pause animation' : hasStarted && !showPoster ? 'Resume animation' : 'Play animation'}</span>
+              <span>{isPlaying ? 'Pause film' : hasStarted && !showPoster ? 'Resume film' : 'Play film'}</span>
             </button>
           )}
         </div>
@@ -166,50 +168,76 @@ function App() {
       <div className="site" id="top" ref={siteRef}>
         <header className="site-header">
           <a className="wordmark" href="#top" aria-label="Boundry home">Boundry</a>
-          <nav aria-label="Main navigation"><a className="text-link" href="#approach">Our approach</a></nav>
+          <nav aria-label="Main navigation">
+            <a className="text-link" href="#belief">Our belief</a>
+            <a className="text-link" href="#approach">Our approach</a>
+            <a className="text-link" href="#contact">Talk to us</a>
+          </nav>
         </header>
         <main id="main">
           <section className="hero" aria-labelledby="hero-title">
             <div className="hero-copy">
-              <h1 id="hero-title"><span>Insurance and</span><span className="highlight">risk intelligence</span><span>for autonomous</span><span>systems.</span></h1>
-              <p className="hero-description">We help robotics and AI companies get their technology understood and covered.</p>
+              <h1 id="hero-title"><span>Insurance for a world</span><span className="highlight">built with AI.</span></h1>
+              <p className="hero-description">We assess AI software, robots and intelligent hardware, helping insurers understand the risk and companies make the case for cover.</p>
               <ContactButton />
               <p className="backing">Backed by <a className="text-link" href="https://www.joinef.com/" target="_blank" rel="noopener noreferrer" aria-label="Entrepreneur First — opens in a new tab">Entrepreneur First</a></p>
-            </div>
-            <div className="hero-collage" data-parallax aria-label="Illustrations of frontier technology">
-              <div className="robot-paper" data-depth="14"><div className="robot-float"><img src="/assets/robot.jpg" alt="Illustration of a robotic arm holding a reflective sphere" width="1200" height="675" fetchPriority="high" decoding="async" /></div></div>
-              <div className="rover-paper" data-depth="-20"><div className="rover-float"><img src="/assets/rover.jpg" alt="Illustration of an autonomous delivery rover" width="1200" height="675" decoding="async" /></div></div>
-              <div className="agent-paper" data-depth="21"><div className="agent-float"><img src="/assets/ai-agent.png" alt="Illustration of an autonomous AI agent working across connected digital tools" width="1254" height="1254" decoding="async" /></div></div>
-              <div className="coral-ring" data-depth="26" aria-hidden="true"><div className="ring-float"></div></div>
             </div>
           </section>
 
           <div className="page-content">
-            <InsuranceCaseVideo />
+            <NextChapterVideo />
 
-            <section className="evidence" aria-labelledby="evidence-title">
-              <div className="section-heading" data-reveal><h2 id="evidence-title">Who we help</h2></div>
-              <div className="domain-grid">
-                {technologies.map((technology, index) => (
-                  <TechnologyCard key={technology.id} technology={technology} delay={index * 80} />
-                ))}
+            <section className="approach" id="approach" aria-labelledby="approach-title">
+              <h2 id="approach-title" data-reveal>Turn technical detail into a case for cover.</h2>
+              <ol className="approach-steps">
+                <li data-reveal>
+                  <p className="step-label"><span aria-hidden="true">01</span> Understand</p>
+                  <h3>How your system works</h3>
+                  <p>Its purpose, operating conditions and decisions.</p>
+                </li>
+                <li data-reveal data-delay="60">
+                  <p className="step-label"><span aria-hidden="true">02</span> Assess</p>
+                  <h3>What could go wrong</h3>
+                  <p>The risks, safeguards and evidence behind them.</p>
+                </li>
+                <li data-reveal data-delay="120">
+                  <p className="step-label"><span aria-hidden="true">03</span> Connect</p>
+                  <h3>Bring the case to insurers</h3>
+                  <p>Help explore cover suited to your deployment.</p>
+                </li>
+              </ol>
+            </section>
+
+            <section className="audiences" aria-labelledby="audiences-title">
+              <div className="audiences-copy">
+                <h2 id="audiences-title" data-reveal>Physical and digital AI.</h2>
+                <ul className="audience-list">
+                  {technologies.map((technology, index) => (
+                    <TechnologyCard key={technology.id} technology={technology} delay={index * 40} />
+                  ))}
+                </ul>
+              </div>
+              <aside className="why-boundry" aria-labelledby="why-boundry-title" data-reveal>
+                <span className="proof-mark" aria-hidden="true" />
+                <p className="section-label">Why Boundry</p>
+                <h3 id="why-boundry-title">Built by technical experts.</h3>
+                <p className="credentials">Our background combines AI and cybersecurity PhD research funded by Cisco with engineering experience at AWS.</p>
+              </aside>
+            </section>
+
+            <section className="closing" id="contact" aria-labelledby="closing-title" data-reveal>
+              <div className="closing-copy">
+                <h2 id="closing-title">Bring your next deployment<br className="desktop-break" /> into the conversation.</h2>
+                <p>Brokers, MGAs and insurers: explore technical assessments and opportunities in physical and digital AI.</p>
+              </div>
+              <div className="closing-actions">
+                <ContactButton variant="butter" />
+                <a className="text-link partnership-link" href="https://calendly.com/khalilismail616/ismail-boundry-meeting" target="_blank" rel="noopener noreferrer" aria-label="Discuss a partnership — opens scheduling in a new tab">Discuss a partnership <span aria-hidden="true">↗</span></a>
               </div>
             </section>
-
-            <section className="why-boundry section-split" aria-labelledby="why-boundry-title" data-reveal>
-              <div><p className="section-label">Why Boundry</p><h2 id="why-boundry-title">Built by technical experts.</h2></div>
-              <div><p>Our background combines AI and cybersecurity PhD research funded by Cisco with engineering experience at AWS.</p></div>
-            </section>
-
-            <section className="partner-panel" aria-labelledby="partners-title" data-reveal>
-              <div><p className="section-label">For brokers, MGAs and insurers</p><h2 id="partners-title">Reach robotics and AI companies.</h2></div>
-              <div><p>Connect with companies seeking cover, with technical assessments to support your underwriting.</p><ContactButton variant="outline">Discuss a partnership</ContactButton></div>
-            </section>
-
-            <section className="closing" aria-labelledby="closing-title" data-reveal><h2 id="closing-title">Make autonomous work insurable,<br />so it can scale.</h2><ContactButton variant="butter" /></section>
           </div>
         </main>
-        <footer className="site-footer"><a className="footer-brand" href="#top">Boundry</a><span>Robotics, autonomous systems and AI</span></footer>
+        <footer className="site-footer"><a className="footer-brand" href="#top">Boundry</a><span>Insurance and technical risk assessment</span></footer>
       </div>
     </>
   )

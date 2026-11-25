@@ -16,10 +16,10 @@ npm run dev
 ## Source
 
 - `src/App.tsx`: page sections and content.
-- `src/components/`: shared booking buttons and interactive technology cards.
-- `src/motion/useSiteMotion.ts`: pointer-relative button pressure and ink, collage parallax, card lighting, reveals and cleanup.
+- `src/components/`: shared booking buttons and compact audience rows.
+- `src/motion/useSiteMotion.ts`: pointer-relative button pressure and ink, reveals and cleanup, with reusable spatial helpers.
 - `src/styles/`: approved Boundry design and responsive styles.
-- `public/assets/`: local font, original illustrations, favicon and the 14-second risk-intelligence film (MP4/WebM plus poster).
+- `public/assets/`: local font, original illustrations, favicon and the next-chapter film (MP4/WebM plus poster).
 - `index.html`, `public/robots.txt`, `public/sitemap.xml`: metadata and search indexing.
 - `vercel.json`: Vercel framework and build configuration.
 
@@ -29,18 +29,20 @@ Vercel imports this repository, runs `npm run build`, and serves `dist/`. Pushes
 
 All contact buttons open the approved Calendly booking page. The backing link opens Entrepreneur First. This app does not collect form submissions or require API keys, a database or private environment variables. Illustrations are conceptual; no customer claims are implied.
 
-Animations respect reduced-motion and coarse-pointer preferences. Card details work through mouse, keyboard and touch. The React motion hook cleans up listeners, observers and generated visual layers on unmount.
+Animations respect reduced-motion and coarse-pointer preferences. Audience examples are always visible, with no hover requirement. The React motion hook cleans up listeners, observers and generated visual layers on unmount.
 
-## Risk-intelligence film
+## Next-chapter film
 
-The 14-second silent film turns an autonomous robot deployment, operating context, safety evidence and technical expertise into an illustrative risk profile. It connects exposure, safeguards and open questions to coverage decisions. Its editable Hyperframes project is `../boundry-risk-intelligence-loop/`; the earlier composition remains in `../boundry-homepage-loop/`.
+The silent, footage-led film moves from archival industry through connected computing to physical and digital AI. It closes with “Insurance for what comes next.” Its editable HyperFrames project is `../boundry-next-chapter-film/`; earlier projects remain available in the workspace. Footage provenance is recorded in [MEDIA-SOURCES.md](MEDIA-SOURCES.md).
 
-The master is rendered natively at 2880 × 2160, 30 fps. Website exports use `boundry-risk-intelligence-2160p.webm` with an MP4 fallback and a matching lossless `boundry-risk-intelligence-poster-2160p.webp` still. Versioned filenames avoid stale cached video. Earlier assets remain for already-open pages.
+The website expects native 1920 × 1080 exports named `boundry-next-chapter.webm` and `boundry-next-chapter.mp4`, with `boundry-next-chapter-poster.webp`. The frame uses a 16:9 ratio. Earlier assets remain for already-open pages.
 
-The video plays silently when visible, pauses offscreen or in hidden tabs, and preserves manual pause. Reduced-motion visitors see the final risk-profile still and can choose to play. Playback failures retain the still. `InsuranceCaseVideo` in `src/App.tsx` owns this behavior.
+The video plays silently when visible, pauses offscreen or in hidden tabs, and preserves manual pause. Reduced-motion visitors see a still and can choose to play. Playback failures retain the still. `NextChapterVideo` in `src/App.tsx` owns this behavior.
 
-## Positioning
+## Positioning and page structure
 
-The homepage presents insurance and risk intelligence for autonomous systems, uses the film to explain the assessment approach and includes a Why Boundry section connecting AI/cybersecurity PhD research funded by Cisco with engineering experience at AWS. It makes no ongoing-monitoring promise. All credentials are founder-supplied; the sample assessment and technology imagery are illustrative.
+The selected “The next chapter” direction leads with **Insurance for a world built with AI.** Physical and digital AI have equal standing. The four audience categories are Robotics & Physical AI, AI Software & Agents, AI Hardware & Infrastructure, and Drones.
 
-The concise page contains the hero, assessment film, technology examples, technical credentials, insurer-partner invitation and closing vision. The standalone problem, deployment-risk-profile and technology-company sections were removed to avoid repeating the same explanation.
+The five page sections are the centred editorial hero; belief and history film; three assessment steps; audience examples alongside technical credentials; and a closing conversation invitation with customer and insurer-partner routes. The original paper, butter, lilac and coral colour values are preserved.
+
+The Why Boundry panel connects AI/cybersecurity PhD research funded by Cisco with engineering experience at AWS. These are user-supplied team backgrounds. The site makes no ongoing-monitoring promise or claim to guaranteed cover, certification, insurance capacity or completed customer outcomes.
