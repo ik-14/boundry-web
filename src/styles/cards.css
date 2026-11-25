@@ -1,8 +1,110 @@
-/* Compact audience examples keep the page focused on the overall offer. */
-.audience-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem;row-gap:1.75rem;list-style:none;margin:2rem 0 0;padding:0}
-.audience-row{min-width:0;border-top:1px solid var(--line);padding-top:1rem}
-.audience-row h3{font-size:1.125rem;font-weight:500;letter-spacing:-.025em;line-height:1.3}
-.audience-row p{font-size:.9375rem;line-height:1.6;color:var(--muted);margin-top:.5rem;max-width:20rem}
-@media(max-width:1000px) and (min-width:761px){.audience-list{column-gap:1.25rem}.audience-row h3{font-size:1rem}.audience-row p{font-size:.875rem}}
-@media(max-width:550px){.audience-list{column-gap:1.2rem;row-gap:1.5rem;margin-top:1.6rem}.audience-row h3{font-size:1rem}.audience-row p{font-size:.875rem}}
-@media(max-width:360px){.audience-list{grid-template-columns:minmax(0,1fr);row-gap:1.2rem}.audience-row h3{font-size:1.1rem}.audience-row p{font-size:.9375rem}}
+/* The hit area stays still; the inner paper surface and diagrams follow the pointer. */
+.audience-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+.audience-row {
+  --card-tint: var(--butter);
+  --diagram-accent: var(--butter);
+  min-width: 0;
+  position: relative;
+  cursor: default;
+}
+.audience-row--ai { --card-tint: var(--lilac); --diagram-accent: var(--lilac); }
+.audience-row--hardware { --card-tint: var(--white); --diagram-accent: var(--butter); }
+.audience-row--drones { --card-tint: var(--coral); --diagram-accent: var(--coral); }
+.audience-row .card-surface {
+  height: 100%;
+  min-height: 237px;
+  padding: 1rem 1.15rem 1.3rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  border-radius: 17px;
+  background: color-mix(in srgb, var(--card-tint) 35%, var(--paper));
+  box-shadow:
+    inset 0 1px 0 var(--white),
+    0 2px 0 color-mix(in srgb, var(--ink) 7%, transparent),
+    0 calc(8px + var(--engagement, 0) * 12px) calc(22px + var(--engagement, 0) * 12px) -17px color-mix(in srgb, var(--ink) 24%, transparent);
+}
+.audience-row.is-pointer-active { z-index: 1; }
+.audience-row .card-surface::after { border-radius: inherit; }
+.card-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 95px;
+  margin-bottom: .9rem;
+  pointer-events: none;
+}
+.technology-diagram {
+  display: block;
+  width: 160px;
+  max-width: 100%;
+  height: 96px;
+  overflow: visible;
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: translate3d(calc(var(--pointer-x, 0) * 7px), calc(var(--pointer-y, 0) * 5px - var(--engagement, 0) * 3px), 0);
+}
+.diagram-guides { stroke-width: 1; opacity: .22; }
+.diagram-paper, .diagram-joint { fill: var(--white); }
+.diagram-accent, .diagram-payload { fill: var(--diagram-accent); }
+.diagram-joint { stroke-width: 2.2; }
+.diagram-arm {
+  transform-box: view-box;
+  transform-origin: 64px 63px;
+  transform: rotate(calc(var(--pointer-x, 0) * 7deg - var(--engagement, 0) * 5deg));
+}
+.diagram-connections, .diagram-traces { stroke-width: 1.4; }
+.diagram-signal { stroke-dasharray: 2 5; opacity: .35; stroke-dashoffset: calc(var(--pointer-x, 0) * 12); }
+.diagram-satellites {
+  transform: translate(calc(var(--pointer-x, 0) * -3px), calc(var(--pointer-y, 0) * -2px));
+}
+.diagram-core, .diagram-chip {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translateY(calc(var(--engagement, 0) * -4px)) rotate(calc(var(--pointer-x, 0) * 5deg)) scale(calc(1 + var(--engagement, 0) * .035));
+}
+.diagram-shadow { stroke-width: 1; opacity: .2; }
+.diagram-drone {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translateY(calc(var(--engagement, 0) * -6px)) rotate(calc(var(--pointer-x, 0) * 6deg));
+}
+.diagram-propeller {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: rotate(calc(var(--pointer-x, 0) * 65deg + var(--engagement, 0) * 40deg));
+}
+.audience-card-copy { position: relative; }
+.audience-row h3 { font-size: 1.125rem; font-weight: 500; letter-spacing: -.025em; line-height: 1.3; }
+.audience-row p { font-size: .9375rem; line-height: 1.6; color: var(--muted); margin-top: .5rem; max-width: 20rem; }
+@media (max-width: 1000px) and (min-width: 761px) {
+  .audience-list { gap: .8rem; }
+  .audience-row .card-surface { padding-inline: .95rem; }
+  .audience-row h3 { font-size: 1rem; }
+  .audience-row p { font-size: .875rem; }
+}
+@media (max-width: 550px) {
+  .audience-list { gap: .8rem; margin-top: 1.6rem; }
+  .audience-row .card-surface { min-height: 241px; padding: .8rem .8rem 1.1rem; border-radius: 14px; }
+  .card-visual { height: 84px; margin-bottom: .7rem; }
+  .technology-diagram { width: 140px; height: 84px; }
+  .audience-row h3 { font-size: 1rem; }
+  .audience-row p { font-size: .875rem; line-height: 1.5; }
+}
+@media (max-width: 360px) {
+  .audience-list { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .audience-row .card-surface { min-height: 0; padding: 1rem 1.2rem 1.25rem; }
+  .audience-row h3 { font-size: 1.1rem; }
+  .audience-row p { font-size: .9375rem; }
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .technology-diagram, .technology-diagram g { transform: none; }
+  .audience-row .card-surface { box-shadow: inset 0 1px 0 var(--white), 0 2px 0 color-mix(in srgb, var(--ink) 7%, transparent), 0 8px 22px -17px color-mix(in srgb, var(--ink) 24%, transparent); }
+}

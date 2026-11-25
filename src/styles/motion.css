@@ -80,11 +80,11 @@
 [data-parallax] [data-depth] {
   transform: translate3d(var(--parallax-x, 0), var(--parallax-y, 0), 0);
 }
-[data-tilt] { perspective: 900px; }
+[data-tilt] { perspective: 1000px; }
 [data-tilt] .card-surface {
   position: relative;
   isolation: isolate;
-  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transform: translateY(calc(var(--engagement, 0) * -9px)) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
   transform-origin: 50% 50%;
 }
 [data-tilt] .card-surface::after {
@@ -93,12 +93,23 @@
   inset: 0;
   z-index: 2;
   border-radius: inherit;
-  background: radial-gradient(circle at var(--light-x, 50%) var(--light-y, 50%), color-mix(in srgb, var(--white) 27%, transparent), transparent 65%);
+  background: radial-gradient(circle at var(--light-x, 50%) var(--light-y, 50%), color-mix(in srgb, var(--white) 48%, transparent), transparent 65%);
   opacity: 0;
   transition: opacity 350ms var(--ease-out);
   pointer-events: none;
 }
 [data-tilt].is-pointer-active .card-surface::after { opacity: 1; }
+.hero-line { animation: headline-arrive 950ms var(--ease-out) both; }
+.hero-line--accent { animation-delay: 100ms; }
+.hero-line > span { display: block; }
+.hero-description { animation: headline-arrive 900ms var(--ease-out) 220ms both; }
+@keyframes headline-arrive {
+  from { opacity: 0; transform: translateY(42px) rotate(1.5deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0); }
+}
+.proof-mark {
+  transform: translate3d(calc(var(--pointer-x, 0) * -18px), calc(var(--pointer-y, 0) * -18px), 0) rotate(calc(var(--engagement, 0) * 36deg)) scale(calc(1 + var(--engagement, 0) * .18));
+}
 .partner-panel { position: relative; isolation: isolate; overflow: clip; }
 .partner-panel > :not(.partner-glow) { position: relative; z-index: 1; }
 .partner-glow {
@@ -114,13 +125,14 @@
 [data-reveal] {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 650ms var(--ease-out) var(--reveal-delay, 0ms), transform 750ms var(--ease-out) var(--reveal-delay, 0ms);
+  transition: opacity 700ms var(--ease-out) var(--reveal-delay, 0ms), transform 950ms var(--ease-out) var(--reveal-delay, 0ms);
 }
-[data-reveal].reveal-pending { opacity: 0; transform: translateY(18px); }
+[data-reveal].reveal-pending { opacity: 0; transform: translateY(42px) scale(.98); }
 .motion-paused .site * { animation-play-state: paused !important; }
 @media (hover: none), (pointer: coarse) {
   .button-surface { transform: scale(var(--press-scale, 1)); }
   [data-parallax] [data-depth], [data-tilt] .card-surface { transform: none; }
+  .proof-mark { transform: none; }
   .partner-glow, [data-tilt] .card-surface::after { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -131,6 +143,7 @@
   }
   [data-reveal], [data-reveal].reveal-pending { opacity: 1; transform: none; }
   [data-parallax] [data-depth], [data-tilt] .card-surface { transform: none; }
+  .proof-mark { transform: none; }
   .partner-glow, [data-tilt] .card-surface::after { display: none; }
   .button[data-ink]:hover { background: var(--ink-fill); color: var(--ink-text); }
   .button[data-ink].has-pressure:hover { background: transparent; }

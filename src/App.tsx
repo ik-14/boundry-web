@@ -120,7 +120,7 @@ function AiInMotionVideo() {
         <h2 id="process-title">New technology changes<br className="desktop-break" /> what we need to insure.</h2>
         <p>Our belief: AI will take on more work in the physical and digital world. Insurance needs to understand the systems doing that work.</p>
       </div>
-      <figure className="process-film-figure">
+      <figure className="process-film-figure" data-reveal>
         <div className="film-shell">
           <div className="process-film-media">
             <video
@@ -176,8 +176,8 @@ function App() {
         </header>
         <main id="main">
           <section className="hero" aria-labelledby="hero-title">
-            <div className="hero-copy">
-              <h1 id="hero-title"><span>Insurance for a world</span><span className="highlight">built with AI.</span></h1>
+            <div className="hero-copy" data-parallax>
+              <h1 id="hero-title"><span className="hero-line"><span data-depth="-4">Insurance for a world</span></span><span className="hero-line hero-line--accent"><span className="highlight-layer" data-depth="14"><span className="highlight">built with AI.</span></span></span></h1>
               <p className="hero-description">We assess AI software, robots and intelligent hardware, helping insurers understand the risk and companies make the case for cover.</p>
               <ContactButton />
               <p className="backing">Backed by <a className="text-link" href="https://www.joinef.com/" target="_blank" rel="noopener noreferrer" aria-label="Entrepreneur First — opens in a new tab">Entrepreneur First</a></p>
@@ -190,20 +190,26 @@ function App() {
             <section className="approach" id="approach" aria-labelledby="approach-title">
               <h2 id="approach-title" data-reveal>Turn technical detail into a case for cover.</h2>
               <ol className="approach-steps">
-                <li data-reveal>
+                <li data-reveal data-tilt="5">
+                  <div className="step-surface card-surface">
                   <p className="step-label"><span aria-hidden="true">01</span> Understand</p>
                   <h3>How your system works</h3>
                   <p>Its purpose, operating conditions and decisions.</p>
+                  </div>
                 </li>
-                <li data-reveal data-delay="60">
+                <li data-reveal data-delay="90" data-tilt="5">
+                  <div className="step-surface card-surface">
                   <p className="step-label"><span aria-hidden="true">02</span> Assess</p>
                   <h3>What could go wrong</h3>
                   <p>The risks, safeguards and evidence behind them.</p>
+                  </div>
                 </li>
-                <li data-reveal data-delay="120">
+                <li data-reveal data-delay="180" data-tilt="5">
+                  <div className="step-surface card-surface">
                   <p className="step-label"><span aria-hidden="true">03</span> Connect</p>
                   <h3>Bring the case to insurers</h3>
                   <p>Help explore cover suited to your deployment.</p>
+                  </div>
                 </li>
               </ol>
             </section>
@@ -217,11 +223,13 @@ function App() {
                   ))}
                 </ul>
               </div>
-              <aside className="why-boundry" aria-labelledby="why-boundry-title" data-reveal>
+              <aside className="why-boundry-frame" aria-labelledby="why-boundry-title" data-reveal data-tilt="6">
+                <div className="why-boundry card-surface">
                 <span className="proof-mark" aria-hidden="true" />
                 <p className="section-label">Why Boundry</p>
                 <h3 id="why-boundry-title">Built by technical experts.</h3>
                 <p className="credentials">Our background combines AI and cybersecurity PhD research funded by Cisco with engineering experience at AWS.</p>
+                </div>
               </aside>
             </section>
 

@@ -16,7 +16,7 @@ npm run dev
 ## Source
 
 - `src/App.tsx`: page sections and content.
-- `src/components/`: shared booking buttons and compact audience rows.
+- `src/components/`: shared booking buttons and tactile audience cards.
 - `src/motion/useSiteMotion.ts`: pointer-relative button pressure and ink, reveals and cleanup, with reusable spatial helpers.
 - `src/styles/`: approved Boundry design and responsive styles.
 - `public/assets/`: local font, original illustrations, favicon and the AI in motion film (MP4/WebM plus poster).
@@ -29,7 +29,7 @@ Vercel imports this repository, runs `npm run build`, and serves `dist/`. Pushes
 
 All contact buttons open the approved Calendly booking page. The backing link opens Entrepreneur First. This app does not collect form submissions or require API keys, a database or private environment variables. Illustrations are conceptual; no customer claims are implied.
 
-Animations respect reduced-motion and coarse-pointer preferences. Audience examples are always visible, with no hover requirement. The React motion hook cleans up listeners, observers and generated visual layers on unmount.
+Animations respect reduced-motion and coarse-pointer preferences. Audience cards have spring tilt, cursor lighting and layered geometric diagrams. The approach cards lift with accent sweeps, the hero has a staggered entrance and subtle parallax, and the credentials panel has a responsive coral ring. Audience text is always visible, with no hover requirement or added keyboard stops. The React motion hook cleans up listeners, observers and generated visual layers on unmount.
 
 ## AI in motion film
 

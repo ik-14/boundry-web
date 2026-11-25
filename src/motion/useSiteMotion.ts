@@ -221,17 +221,20 @@ export function useSiteMotion(rootRef: RefObject<HTMLDivElement | null>) {
       window.addEventListener('resize', resetPressure, { passive: true, signal })
     })
 
-    function spatial(element: HTMLElement, paint: (x: number, y: number) => void) {
+    function spatial(element: HTMLElement, paint: (x: number, y: number, engagement: number) => void) {
       let x = 0, y = 0, vx = 0, vy = 0, tx = 0, ty = 0
+      let engagement = 0, engagementVelocity = 0, active = 0
       rememberClass(element, 'is-pointer-active')
       const animate: MotionTask = delta => {
-        vx += ((tx - x) * 170 - vx * 24) * delta
-        vy += ((ty - y) * 170 - vy * 24) * delta
+        vx += ((tx - x) * 200 - vx * 19) * delta
+        vy += ((ty - y) * 200 - vy * 19) * delta
+        engagementVelocity += ((active - engagement) * 220 - engagementVelocity * 20) * delta
         x += vx * delta
         y += vy * delta
-        const moving = Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(vx) + Math.abs(vy) > .002
-        if (!moving) { x = tx; y = ty; vx = vy = 0 }
-        paint(x, y)
+        engagement += engagementVelocity * delta
+        const moving = Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(vx) + Math.abs(vy) + Math.abs(active - engagement) + Math.abs(engagementVelocity) > .002
+        if (!moving) { x = tx; y = ty; vx = vy = 0; engagement = active; engagementVelocity = 0 }
+        paint(x, y, engagement)
         return moving
       }
       const point = (event: PointerEvent) => {
@@ -240,11 +243,13 @@ export function useSiteMotion(rootRef: RefObject<HTMLDivElement | null>) {
         if (!rect.width || !rect.height) return
         tx = clamp((event.clientX - rect.left) / rect.width * 2 - 1, -1, 1)
         ty = clamp((event.clientY - rect.top) / rect.height * 2 - 1, -1, 1)
+        active = 1
         element.classList.add('is-pointer-active')
         wake(animate)
       }
       const release = () => {
         tx = ty = 0
+        active = 0
         element.classList.remove('is-pointer-active')
         wake(animate)
       }
@@ -254,12 +259,13 @@ export function useSiteMotion(rootRef: RefObject<HTMLDivElement | null>) {
       element.addEventListener('pointercancel', release, { signal })
       const reset = () => {
         x = y = vx = vy = tx = ty = 0
+        engagement = engagementVelocity = active = 0
         element.classList.remove('is-pointer-active')
-        paint(0, 0)
+        paint(0, 0, 0)
       }
       resets.push(reset)
       window.addEventListener('resize', reset, { passive: true, signal })
-      paint(0, 0)
+      paint(0, 0, 0)
     }
 
     root.querySelectorAll<HTMLElement>('[data-parallax]').forEach(collage => {
@@ -272,12 +278,16 @@ export function useSiteMotion(rootRef: RefObject<HTMLDivElement | null>) {
       }))
     })
     root.querySelectorAll<HTMLElement>('[data-tilt]').forEach(card => {
-      rememberStyles(card, ['--tilt-x', '--tilt-y', '--light-x', '--light-y'])
-      spatial(card, (x, y) => {
-        card.style.setProperty('--tilt-x', `${-y * 3}deg`)
-        card.style.setProperty('--tilt-y', `${x * 3}deg`)
+      rememberStyles(card, ['--tilt-x', '--tilt-y', '--light-x', '--light-y', '--pointer-x', '--pointer-y', '--engagement'])
+      const strength = clamp(Number(card.dataset.tilt) || 6, 0, 10)
+      spatial(card, (x, y, engagement) => {
+        card.style.setProperty('--tilt-x', `${-y * strength}deg`)
+        card.style.setProperty('--tilt-y', `${x * strength}deg`)
         card.style.setProperty('--light-x', `${50 + x * 50}%`)
         card.style.setProperty('--light-y', `${50 + y * 50}%`)
+        card.style.setProperty('--pointer-x', `${x}`)
+        card.style.setProperty('--pointer-y', `${y}`)
+        card.style.setProperty('--engagement', `${engagement}`)
       })
     })
     root.querySelectorAll<HTMLElement>('.partner-panel').forEach(panel => {
