@@ -4,7 +4,7 @@ import { TechnologyCard } from './components/TechnologyCard'
 import { technologies } from './data/technologies'
 import { useSiteMotion } from './motion/useSiteMotion'
 
-function NextChapterVideo() {
+function AiInMotionVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const playRequestRef = useRef(0)
   const [isInView, setIsInView] = useState(false)
@@ -132,19 +132,19 @@ function NextChapterVideo() {
               loop
               playsInline
               preload="metadata"
-              poster="/assets/boundry-next-chapter-poster.webp"
+              poster="/assets/boundry-ai-in-motion-poster.webp"
               aria-hidden="true"
               onPlaying={() => { setIsPlaying(true); setHasStarted(true) }}
               onPause={() => setIsPlaying(false)}
               onError={() => { setHasPlaybackError(true); setIsPlaying(false) }}
             >
-              <source src="/assets/boundry-next-chapter.webm" type="video/webm" />
-              <source src="/assets/boundry-next-chapter.mp4" type="video/mp4" />
+              <source src="/assets/boundry-ai-in-motion.webm" type="video/webm" />
+              <source src="/assets/boundry-ai-in-motion.mp4" type="video/mp4" />
             </video>
-            {showPoster && <img className="process-film-poster" src="/assets/boundry-next-chapter-poster.webp" width="1920" height="1080" alt="" loading="lazy" decoding="async" />}
+            {showPoster && <img className="process-film-poster" src="/assets/boundry-ai-in-motion-poster.webp" width="1920" height="1080" alt="" loading="lazy" decoding="async" />}
           </div>
         </div>
-        <figcaption className="process-film-description">Archival industry gives way to connected computing, then physical and digital AI. The film follows how technology changes the world's work and closes with Boundry's belief: insurance for what comes next.</figcaption>
+        <figcaption className="process-film-description">Physical and digital AI create new risks. Boundry helps explain how these systems work and make the case for insurance.</figcaption>
         <div className="process-film-controls">
           {hasPlaybackError ? <p>Showing a still image of our story.</p> : (
             <button className="process-film-toggle" type="button" onClick={togglePlayback} aria-controls="insurance-case-video">
@@ -185,7 +185,7 @@ function App() {
           </section>
 
           <div className="page-content">
-            <NextChapterVideo />
+            <AiInMotionVideo />
 
             <section className="approach" id="approach" aria-labelledby="approach-title">
               <h2 id="approach-title" data-reveal>Turn technical detail into a case for cover.</h2>
