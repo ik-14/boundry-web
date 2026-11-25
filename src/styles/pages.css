@@ -1,0 +1,268 @@
+/* Sector guides and the insurance-partner route share Boundry's paper, ink and motion. */
+.detail-page {
+  --sector-colour: var(--butter);
+  --diagram-accent: var(--butter);
+}
+.detail-page--ai { --sector-colour: var(--lilac); --diagram-accent: var(--lilac); }
+.detail-page--drones { --sector-colour: var(--coral); --diagram-accent: var(--coral); }
+.detail-page--hardware { --sector-colour: var(--butter); --diagram-accent: var(--butter); }
+.detail-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .6rem;
+  padding-block: 1rem;
+  color: var(--muted);
+  font-size: .875rem;
+  line-height: 1.6;
+}
+.detail-breadcrumbs a { text-decoration: underline; text-underline-offset: .22em; text-decoration-color: var(--line); }
+.detail-breadcrumbs a:hover { color: var(--ink); text-decoration-color: currentColor; }
+.detail-breadcrumbs [aria-current] { color: var(--ink); }
+.detail-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, .9fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: 2.25rem 0 4.25rem;
+}
+.detail-hero-copy { min-width: 0; }
+.detail-hero .section-label { margin-bottom: 1.2rem; }
+.detail-hero h1 {
+  font-size: clamp(3.1rem, 5.2vw, 4.7rem);
+  line-height: 1.05;
+  letter-spacing: -.055em;
+  max-width: 12em;
+  text-wrap: balance;
+}
+.detail-intro {
+  margin-top: 1.5rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  max-width: 36rem;
+}
+.sector-art-frame { min-width: 0; }
+.sector-art {
+  position: relative;
+  min-height: 370px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: clip;
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--sector-colour) 48%, var(--paper));
+  padding: 2.7rem 2rem 2rem;
+  box-shadow: 0 5px 0 color-mix(in srgb, var(--ink) 7%, transparent);
+}
+.sector-art-orbit {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  border-radius: 50%;
+  top: -75px;
+  right: -60px;
+  transform: translate3d(calc(var(--pointer-x, 0) * -18px), calc(var(--pointer-y, 0) * -18px), 0);
+}
+.sector-art > .technology-diagram {
+  width: 300px;
+  height: auto;
+  aspect-ratio: 5 / 3;
+  flex: none;
+  margin-bottom: 1.8rem;
+  position: relative;
+}
+.sector-examples { width: 100%; position: relative; }
+.sector-examples .section-label { color: var(--ink); font-size: .875rem; margin-bottom: .75rem; }
+.sector-examples ul { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 0; }
+.sector-examples li {
+  padding: .35rem .65rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 17%, transparent);
+  border-radius: 5px;
+  font-size: .875rem;
+  line-height: 1.5;
+  background: color-mix(in srgb, var(--paper) 45%, transparent);
+}
+.detail-section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
+.detail-section-heading { max-width: 49rem; }
+.detail-section-heading h2 { max-width: 39rem; }
+.detail-section-heading > p:last-child:not(.section-label) { max-width: 39rem; margin-top: 1.1rem; line-height: 1.7; color: var(--muted); }
+.coverage-list { margin: 2rem 0 0; padding: 0; list-style: none; }
+.coverage-list > li + li { margin-top: .75rem; }
+.coverage-item {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--white) 30%, var(--paper));
+  transition: background 250ms var(--ease-out), border-color 250ms var(--ease-out);
+}
+.coverage-item:hover { border-color: var(--muted); }
+.coverage-item[open] { background: color-mix(in srgb, var(--sector-colour) 17%, var(--paper)); }
+.coverage-item summary {
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) 24px;
+  align-items: center;
+  gap: 1.5rem;
+  cursor: pointer;
+  padding: 1.4rem 1.6rem;
+  border-radius: inherit;
+  touch-action: manipulation;
+}
+.coverage-item summary::-webkit-details-marker { display: none; }
+.coverage-item h3 { font-size: 1.1rem; font-weight: 500; letter-spacing: -.02em; line-height: 1.45; }
+.coverage-line { color: var(--muted); font-size: .9375rem; line-height: 1.5; }
+.disclosure-symbol { position: relative; display: block; width: 22px; height: 22px; }
+.disclosure-symbol span { position: absolute; width: 13px; height: 1.5px; background: var(--ink); top: 10px; left: 4px; }
+.disclosure-symbol span:last-child { transform: rotate(90deg); transition: transform 250ms var(--ease-out); }
+.coverage-item[open] .disclosure-symbol span:last-child { transform: rotate(0); }
+.coverage-explanation { padding: 0 1.6rem 1.5rem; }
+.coverage-explanation p { line-height: 1.7; max-width: 52rem; color: var(--muted); }
+.detail-gap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 22px;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  margin-bottom: 3.5rem;
+}
+.detail-gap .section-label { color: var(--sector-colour); }
+.detail-gap h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
+.detail-gap > p { line-height: 1.8; align-self: center; }
+.assessment-section { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, .85fr); gap: 4rem; align-items: start; }
+.assessment-main { min-width: 0; }
+.evidence-list { margin: 1.8rem 0 0; }
+.evidence-list > div { padding: 1.15rem 0; border-top: 1px solid var(--line); }
+.evidence-list dt { font-size: 1.0625rem; font-weight: 500; letter-spacing: -.015em; }
+.evidence-list dd { margin: .45rem 0 0; color: var(--muted); line-height: 1.7; }
+.detail-expertise-frame { min-width: 0; }
+.detail-expertise { position: relative; overflow: clip; border-radius: 20px; background: var(--lilac); padding: 2.25rem 2rem; }
+.detail-expertise .section-label { position: relative; color: var(--ink); }
+.detail-expertise h3 { position: relative; font-size: clamp(2rem, 3vw, 2.4rem); font-weight: 500; line-height: 1.12; letter-spacing: -.045em; max-width: 15rem; }
+.detail-expertise > p:last-child { position: relative; margin-top: 1.35rem; line-height: 1.7; }
+.detail-closing { border-top: 1px solid var(--line); padding: 3.25rem 0; display: flex; align-items: center; justify-content: space-between; gap: 3rem; }
+.detail-closing h2 { max-width: 39rem; }
+.detail-closing-actions { display: flex; flex-direction: column; gap: 1rem; align-items: flex-end; flex: none; max-width: 22rem; }
+.detail-closing-actions .button { margin: 0; }
+.detail-closing-actions .text-link { font-size: .875rem; }
+.detail-notes { max-width: 55rem; padding: 0 0 2.5rem; font-size: .8125rem; line-height: 1.65; color: var(--muted); }
+.source-notes { margin-top: 1rem; }
+.source-notes summary { width: fit-content; cursor: pointer; padding: .25rem 0; font-size: .875rem; color: var(--ink); }
+.source-notes ul { padding-left: 1.2rem; margin: .65rem 0 0; }
+.source-notes li + li { margin-top: .4rem; }
+.source-notes a { text-decoration: underline; text-underline-offset: .2em; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+.insurer-hero { grid-template-columns: minmax(0, 1.3fr) minmax(0, .9fr); gap: 3rem; }
+.insurer-hero h1 { font-size: clamp(3rem, 4.7vw, 4.15rem); max-width: 12em; }
+.assessment-sheet-frame { min-width: 0; }
+.assessment-sheet {
+  padding: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--lilac) 34%, var(--paper));
+  box-shadow: 7px 7px 0 color-mix(in srgb, var(--lilac) 80%, var(--paper));
+}
+.assessment-sheet .section-label { margin-bottom: 1.5rem; color: var(--ink); }
+.assessment-sheet-heading { position: relative; }
+.assessment-sheet h2 { font-size: 1.9rem; line-height: 1.2; max-width: 14rem; margin-top: 1.4rem; }
+.assessment-sheet-mark { position: relative; display: block; width: 73px; height: 38px; }
+.assessment-sheet-mark span { position: absolute; width: 35px; height: 35px; border: 1px solid var(--ink); border-radius: 50%; background: var(--butter); }
+.assessment-sheet-mark span:nth-child(2) { left: 18px; background: var(--coral); transform: translateY(calc(var(--engagement, 0) * -7px)); }
+.assessment-sheet-mark span:nth-child(3) { left: 36px; background: var(--lilac); transform: translateY(calc(var(--engagement, 0) * -14px)); }
+.assessment-sheet dl { margin: 1.6rem 0 0; }
+.assessment-sheet dl > div { border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); padding: 1rem 0; }
+.assessment-sheet dl > div:last-child { padding-bottom: 0; }
+.assessment-sheet dt { font-size: 1rem; font-weight: 500; }
+.assessment-sheet dd { font-size: .9375rem; line-height: 1.65; margin: .35rem 0 0; color: var(--muted); }
+.partnership-benefits { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.3rem; }
+.partnership-benefits > li { --benefit-colour: var(--butter); min-width: 0; }
+.partnership-benefit--evidence { --benefit-colour: var(--lilac) !important; }
+.partnership-benefit--appetite { --benefit-colour: var(--coral) !important; }
+.partnership-benefit { height: 100%; position: relative; padding: 1.75rem; border: 1px solid var(--line); border-radius: 18px; background: color-mix(in srgb, var(--benefit-colour) 15%, var(--paper)); overflow: clip; }
+.benefit-mark { display: block; width: 32px; height: 32px; border-radius: 50%; background: var(--benefit-colour); border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); margin-bottom: 1.25rem; transform: translateX(calc(var(--pointer-x, 0) * 7px)) scale(calc(1 + var(--engagement, 0) * .16)); }
+.partnership-benefit--evidence .benefit-mark { border-radius: 6px; transform: rotate(calc(var(--pointer-x, 0) * 25deg)); }
+.partnership-benefit--appetite .benefit-mark { border-radius: 50% 50% 4px 4px; }
+.partnership-benefit h3 { font-size: 1.25rem; font-weight: 500; line-height: 1.25; letter-spacing: -.025em; }
+.partnership-benefit p { color: var(--muted); margin-top: .85rem; line-height: 1.7; }
+.insurer-expertise { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 4rem; align-items: start; }
+.insurer-credentials { margin-top: 1.5rem; max-width: 30rem; line-height: 1.7; }
+.appetite-note { border-left: 3px solid var(--lilac); padding: .25rem 0 .25rem 1.75rem; }
+.appetite-note h3 { font-size: 1.35rem; font-weight: 500; line-height: 1.35; letter-spacing: -.025em; max-width: 24rem; }
+.appetite-note p { margin-top: 1rem; line-height: 1.7; color: var(--muted); }
+.appetite-note .text-link { margin-top: 1rem; font-size: .9375rem; text-decoration: underline; text-underline-offset: .2em; }
+
+@media (max-width: 1000px) {
+  .detail-hero { gap: 2rem; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+  .detail-hero h1 { font-size: clamp(2.8rem, 5.4vw, 4rem); }
+  .sector-art { padding: 2rem 1.5rem 1.5rem; min-height: 330px; }
+  .assessment-section { gap: 2.5rem; }
+  .detail-expertise { padding: 2rem 1.5rem; }
+  .detail-closing { gap: 2rem; }
+  .detail-closing h2 { font-size: 2.3rem; }
+  .detail-closing-actions { max-width: 18rem; }
+  .assessment-sheet { padding: 1.5rem; }
+  .partnership-benefits { gap: 1rem; }
+  .partnership-benefit { padding: 1.5rem 1.25rem; }
+  .insurer-expertise { gap: 2.5rem; }
+}
+@media (max-width: 760px) {
+  .detail-hero { grid-template-columns: minmax(0, 1fr); padding: 1.5rem 0 3rem; gap: 2.25rem; }
+  .detail-hero h1 { font-size: clamp(3rem, 7.7vw, 4.2rem); max-width: 14em; }
+  .detail-intro { max-width: 38rem; }
+  .sector-art { min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; padding: 2rem; align-items: center; }
+  .sector-art > .technology-diagram { width: 100%; margin: 0; }
+  .sector-examples li { font-size: .875rem; }
+  .detail-section { padding: 2.75rem 0; }
+  .detail-gap { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding: 2rem; margin-bottom: 2.75rem; }
+  .detail-gap h2 { max-width: 30rem; }
+  .assessment-section { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .detail-expertise { padding: 2rem; }
+  .detail-expertise h3 { max-width: none; }
+  .detail-expertise > p:last-child { max-width: 34rem; margin-top: 1rem; }
+  .detail-closing { flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 2.75rem 0; }
+  .detail-closing-actions { align-items: flex-start; max-width: 100%; }
+  .assessment-sheet { padding: 2rem; box-shadow: 5px 5px 0 color-mix(in srgb, var(--lilac) 80%, var(--paper)); }
+  .assessment-sheet-heading { display: flex; align-items: center; gap: 1.4rem; }
+  .assessment-sheet-mark { flex: none; }
+  .assessment-sheet h2 { max-width: 18rem; margin: 0; }
+  .partnership-benefits { grid-template-columns: minmax(0, 1fr); }
+  .partnership-benefit { padding: 1.6rem; }
+  .partnership-benefit p { max-width: 37rem; }
+  .benefit-mark { margin-bottom: 1rem; }
+  .insurer-expertise { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+}
+@media (max-width: 550px) {
+  .detail-breadcrumbs { font-size: .8125rem; padding-block: .7rem; gap: .45rem; }
+  .detail-hero { padding-top: 1.2rem; }
+  .detail-hero h1 { font-size: clamp(2.65rem, 10vw, 3.5rem); line-height: 1.07; }
+  .detail-intro { font-size: 1rem; line-height: 1.7; margin-top: 1.25rem; }
+  .detail-hero .section-label { font-size: .8125rem; margin-bottom: 1rem; }
+  .detail-hero .button { margin-top: 1.5rem; }
+  .sector-art { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding: 1.5rem; border-radius: 18px; }
+  .sector-art > .technology-diagram { width: 230px; justify-self: center; }
+  .sector-art-orbit { width: 200px; height: 200px; }
+  .sector-examples .section-label { font-size: .875rem; }
+  .coverage-item summary { grid-template-columns: minmax(0, 1fr) 22px; gap: .6rem 1rem; padding: 1.2rem; }
+  .coverage-item h3 { font-size: 1.0625rem; }
+  .coverage-line { grid-column: 1; font-size: .875rem; }
+  .disclosure-symbol { grid-column: 2; grid-row: 1 / 3; align-self: center; }
+  .coverage-explanation { padding: 0 1.2rem 1.25rem; }
+  .detail-gap { padding: 1.6rem; border-radius: 18px; }
+  .detail-gap h2 { font-size: 1.9rem; }
+  .detail-expertise { padding: 1.8rem 1.5rem; }
+  .detail-expertise h3 { max-width: 17rem; }
+  .detail-closing h2 { font-size: 2.1rem; }
+  .detail-notes { padding-bottom: 2rem; }
+  .assessment-sheet { padding: 1.5rem; }
+  .assessment-sheet-heading { display: block; }
+  .assessment-sheet h2 { margin-top: 1.3rem; font-size: 1.8rem; }
+  .appetite-note { padding-left: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .sector-art-orbit, .assessment-sheet-mark span, .benefit-mark { transform: none !important; }
+}

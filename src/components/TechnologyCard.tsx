@@ -5,7 +5,7 @@ interface TechnologyCardProps {
   delay: number
 }
 
-function TechnologyDiagram({ category }: { category: string }) {
+export function TechnologyDiagram({ category }: { category: string }) {
   return (
     <svg className={`technology-diagram technology-diagram--${category}`} viewBox="0 0 160 96" fill="none" aria-hidden="true" focusable="false">
       <g className="diagram-guides">
@@ -83,13 +83,14 @@ function TechnologyDiagram({ category }: { category: string }) {
 export function TechnologyCard({ technology, delay }: TechnologyCardProps) {
   return (
     <li className={`audience-row audience-row--${technology.id}`} data-reveal data-tilt="8" data-delay={delay || undefined}>
-      <div className="card-surface">
+      <a className="card-surface audience-card-link" href={`/sectors/${technology.slug}`} aria-labelledby={`technology-${technology.id}`}>
         <div className="card-visual"><TechnologyDiagram category={technology.id} /></div>
         <div className="audience-card-copy">
-          <h3>{technology.name}</h3>
+          <h3 id={`technology-${technology.id}`}>{technology.name}</h3>
           <p>{technology.summary}</p>
+          <span className="card-explore">Explore insurance needs</span>
         </div>
-      </div>
+      </a>
     </li>
   )
 }

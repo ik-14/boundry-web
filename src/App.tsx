@@ -3,15 +3,17 @@ import { ContactButton } from './components/ContactButton'
 import { TechnologyCard } from './components/TechnologyCard'
 import { technologies } from './data/technologies'
 import { useSiteMotion } from './motion/useSiteMotion'
+import { SiteHeader } from './components/SiteHeader'
+import { SectorPage } from './pages/SectorPage'
+import { InsurersPage } from './pages/InsurersPage'
+import { sectors } from './data/sectors'
 
 function AiInMotionVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const playRequestRef = useRef(0)
   const [isInView, setIsInView] = useState(false)
-  const [isPageVisible, setIsPageVisible] = useState(() => !document.hidden)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-  )
+  const [isPageVisible, setIsPageVisible] = useState(true)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [hasExplicitPlay, setHasExplicitPlay] = useState(false)
   const [isUserPaused, setIsUserPaused] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -38,6 +40,8 @@ function AiInMotionVideo() {
       if (reducedMotion.matches) setHasExplicitPlay(false)
     }
     const onVisibilityChange = () => setIsPageVisible(!document.hidden)
+    onMotionChange()
+    onVisibilityChange()
     reducedMotion.addEventListener('change', onMotionChange)
     document.addEventListener('visibilitychange', onVisibilityChange)
 
@@ -158,7 +162,11 @@ function AiInMotionVideo() {
   )
 }
 
-function App() {
+function App({ pathname = '/' }: { pathname?: string }) {
+  const path = pathname.replace(/\/+$/, '') || '/'
+  const sector = sectors.find(item => path === `/sectors/${item.slug}`)
+  const isHome = path === '/'
+  const isInsurers = path === '/for-insurers'
   const siteRef = useRef<HTMLDivElement>(null)
   useSiteMotion(siteRef)
 
@@ -166,15 +174,9 @@ function App() {
     <>
       <a className="skip-link" href="#main">Skip to content</a>
       <div className="site" id="top" ref={siteRef}>
-        <header className="site-header">
-          <a className="wordmark" href="#top" aria-label="Boundry home">Boundry</a>
-          <nav aria-label="Main navigation">
-            <a className="text-link" href="#belief">Our belief</a>
-            <a className="text-link" href="#approach">Our approach</a>
-            <a className="text-link" href="#contact">Talk to us</a>
-          </nav>
-        </header>
-        <main id="main">
+        <SiteHeader pathname={path} />
+        <main id="main" tabIndex={-1}>
+          {isHome ? <>
           <section className="hero" aria-labelledby="hero-title">
             <div className="hero-copy" data-parallax>
               <h1 id="hero-title"><span className="hero-line"><span data-depth="-4">Insurance for a world</span></span><span className="hero-line hero-line--accent"><span className="highlight-layer" data-depth="14"><span className="highlight">built with AI.</span></span></span></h1>
@@ -214,7 +216,7 @@ function App() {
               </ol>
             </section>
 
-            <section className="audiences" aria-labelledby="audiences-title">
+            <section className="audiences" id="who-we-help" aria-labelledby="audiences-title">
               <div className="audiences-copy">
                 <h2 id="audiences-title" data-reveal>Physical and digital AI.</h2>
                 <ul className="audience-list">
@@ -222,6 +224,7 @@ function App() {
                     <TechnologyCard key={technology.id} technology={technology} delay={index * 40} />
                   ))}
                 </ul>
+                <p className="audience-other">Something else? <a className="text-link" href="https://calendly.com/khalilismail616/ismail-boundry-meeting" target="_blank" rel="noopener noreferrer" aria-label="Tell us what you’re building — opens scheduling in a new tab">Tell us what you’re building.</a></p>
               </div>
               <aside className="why-boundry-frame" aria-labelledby="why-boundry-title" data-reveal data-tilt="6">
                 <div className="why-boundry card-surface">
@@ -236,16 +239,28 @@ function App() {
             <section className="closing" id="contact" aria-labelledby="closing-title" data-reveal>
               <div className="closing-copy">
                 <h2 id="closing-title">Bring your next deployment<br className="desktop-break" /> into the conversation.</h2>
-                <p>Brokers, MGAs and insurers: explore technical assessments and opportunities in physical and digital AI.</p>
+                <p>Understand the insurance questions around your technology and the evidence that helps answer them.</p>
               </div>
               <div className="closing-actions">
                 <ContactButton variant="butter" />
-                <a className="text-link partnership-link" href="https://calendly.com/khalilismail616/ismail-boundry-meeting" target="_blank" rel="noopener noreferrer" aria-label="Discuss a partnership — opens scheduling in a new tab">Discuss a partnership <span aria-hidden="true">↗</span></a>
+                <a className="text-link partnership-link" href="/for-insurers">For insurers: explore a partnership</a>
               </div>
             </section>
           </div>
+          </> : sector ? <SectorPage sector={sector} /> : isInsurers ? <InsurersPage /> : (
+            <section className="not-found">
+              <p className="section-label">Page not found</p>
+              <h1>Let’s find your way.</h1>
+              <p>This page may have moved. Explore the companies we help or start a conversation.</p>
+              <a className="button" href="/#who-we-help">Explore Boundry</a>
+            </section>
+          )}
         </main>
-        <footer className="site-footer"><a className="footer-brand" href="#top">Boundry</a><span>Insurance and technical risk assessment</span></footer>
+        <footer className="site-footer">
+          <a className="footer-brand" href="/">Boundry</a>
+          <span>Insurance and technical risk assessment</span>
+          <nav aria-label="Footer navigation"><a className="text-link" href="/#who-we-help">Who we help</a><a className="text-link" href="/for-insurers">For insurers</a></nav>
+        </footer>
       </div>
     </>
   )

@@ -1,0 +1,35 @@
+.site-header { position: relative; z-index: 5; }
+.site-header nav { color: var(--ink); }
+.site-header nav > .text-link { min-height: 44px; display: inline-flex; align-items: center; }
+.site-header a[aria-current="page"] { text-decoration: underline; text-underline-offset: .35em; }
+.sector-menu { position: relative; }
+.sector-menu summary { display: flex; align-items: center; gap: .5rem; min-height: 44px; cursor: pointer; list-style: none; }
+.sector-menu summary::-webkit-details-marker { display: none; }
+.sector-menu summary svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; transition: transform 200ms ease; }
+.sector-menu[open] summary svg { transform: rotate(180deg); }
+.sector-menu-panel { position: absolute; top: calc(100% + .5rem); right: -1rem; width: 340px; padding: .6rem; background: var(--white); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 16px 40px #27242420; }
+.sector-menu-panel a { display: flex; align-items: center; gap: .75rem; min-height: 52px; padding: .7rem .8rem; border-radius: 8px; font-size: .9375rem; line-height: 1.4; }
+.sector-menu-panel a:hover, .sector-menu-panel a:focus-visible, .sector-menu-panel a[aria-current="page"] { background: var(--paper); }
+.menu-swatch { flex: none; width: 13px; height: 13px; border: 1px solid #27242420; border-radius: 4px; background: var(--butter); }
+.menu-swatch--ai { background: var(--lilac); }
+.menu-swatch--drones { background: var(--coral); }
+.menu-swatch--hardware { background: var(--paper); }
+.sector-menu-panel .sector-menu-other { margin-top: .35rem; border-top: 1px solid var(--line); border-radius: 0 0 8px 8px; color: var(--muted); font-size: .875rem; }
+.audience-card-link { display: block; color: inherit; }
+.audience-card-link:focus-visible { outline-offset: 4px; }
+.card-explore { display: block; margin-top: 1.05rem; font-size: .8125rem; font-weight: 500; text-decoration: underline; text-underline-offset: .25em; text-decoration-color: #27242450; }
+.audience-card-link:hover .card-explore { text-decoration-color: currentColor; }
+.audience-other { margin-top: 1.25rem; color: var(--muted); font-size: .9375rem; line-height: 1.7; }
+.audience-other a { color: var(--ink); text-decoration: underline; text-underline-offset: .25em; }
+.site-footer nav { display: flex; gap: 1.25rem; }
+.not-found { min-height: 65vh; padding: 5rem 0; }
+.not-found h1 { font-size: clamp(3rem, 7vw, 5.5rem); }
+.not-found > p:not(.section-label) { max-width: 35rem; margin-top: 1.5rem; }
+@media(max-width: 760px) { .site-footer { flex-wrap: wrap; } }
+@media(max-width: 550px) {
+  .site-header { gap: .75rem; }
+  .site-header nav { justify-content: space-between; gap: .8rem; font-size: .875rem; }
+  .sector-menu { position: static; }
+  .sector-menu-panel { left: 0; right: 0; top: calc(100% - .4rem); width: auto; }
+  .site-footer nav { width: 100%; }
+}
