@@ -115,10 +115,10 @@ function InsuranceCaseVideo() {
   }
 
   return (
-    <section className="process-film" aria-labelledby="process-title">
+    <section className="process-film" id="approach" aria-labelledby="process-title">
       <div className="process-film-heading section-split" data-reveal>
-        <h2 id="process-title">From technical evidence to risk intelligence.</h2>
-        <p>We connect deployment details, failure scenarios and safety evidence into a risk profile insurers can use to assess coverage, terms and pricing.</p>
+        <h2 id="process-title">Make the case for cover.</h2>
+        <p>We assess how your system works, what can go wrong and the safeguards in place.</p>
       </div>
       <figure className="process-film-figure">
         <div className="process-film-media">
@@ -172,7 +172,7 @@ function App() {
           <section className="hero" aria-labelledby="hero-title">
             <div className="hero-copy">
               <h1 id="hero-title"><span>Insurance and</span><span className="highlight">risk intelligence</span><span>for autonomous</span><span>systems.</span></h1>
-              <p className="hero-description">We help robotics and AI companies get their technology understood and covered. We turn deployment data and technical assessments into risk information insurers can use.</p>
+              <p className="hero-description">We help robotics and AI companies get their technology understood and covered.</p>
               <ContactButton />
               <p className="backing">Backed by <a className="text-link" href="https://www.joinef.com/" target="_blank" rel="noopener noreferrer" aria-label="Entrepreneur First — opens in a new tab">Entrepreneur First</a></p>
             </div>
@@ -185,15 +185,10 @@ function App() {
           </section>
 
           <div className="page-content">
-            <section className="intro section-split" id="approach" aria-labelledby="problem-title" data-reveal>
-              <h2 id="problem-title">New technology needs a clearer risk picture.</h2>
-              <p>Emerging technologies can have limited claims history and unfamiliar failure modes. We use technical and operational data to give insurers the evidence to assess these risks.</p>
-            </section>
-
             <InsuranceCaseVideo />
 
             <section className="evidence" aria-labelledby="evidence-title">
-              <div className="section-heading" data-reveal><h2 id="evidence-title">Start with how it actually works.</h2><p>The evidence behind the insurance decision</p></div>
+              <div className="section-heading" data-reveal><h2 id="evidence-title">Who we help</h2></div>
               <div className="domain-grid">
                 {technologies.map((technology, index) => (
                   <TechnologyCard key={technology.id} technology={technology} delay={index * 80} />
@@ -201,40 +196,14 @@ function App() {
               </div>
             </section>
 
-            <section className="risk-profile section-split" aria-labelledby="risk-profile-title" data-reveal>
-              <div className="risk-profile-intro">
-                <p className="section-label">Deployment risk profile</p>
-                <h2 id="risk-profile-title">See the risk and the evidence behind it.</h2>
-                <p>Bring the operating context, failure scenarios and safeguards into one assessment. Make the unanswered questions visible.</p>
-              </div>
-              <article className="risk-profile-example" aria-labelledby="profile-example-title">
-                <header className="risk-profile-header">
-                  <span className="example-label">Illustrative example</span>
-                  <h3 id="profile-example-title">Warehouse mobile robot</h3>
-                </header>
-                <dl className="risk-profile-details">
-                  <div><dt>Deployment</dt><dd>Moving goods through aisles shared with warehouse staff.</dd></div>
-                  <div><dt>Failure scenarios</dt><dd>A collision could injure a person, damage stock or interrupt operations.</dd></div>
-                  <div><dt>Safeguards to assess</dt><dd>Speed limits, obstacle detection, emergency stops and human oversight.</dd></div>
-                  <div><dt>Evidence to review</dt><dd>Safety tests, task logs, interventions and incident records.</dd></div>
-                </dl>
-                <div className="risk-profile-question"><span>Underwriting question</span><p>Do the safety tests reflect the people, payloads and conditions in this deployment?</p></div>
-              </article>
-            </section>
-
             <section className="why-boundry section-split" aria-labelledby="why-boundry-title" data-reveal>
-              <div><p className="section-label">Why Boundry</p><h2 id="why-boundry-title">Technical expertise, applied to insurance risk.</h2></div>
-              <div><p>Our background combines AI and cybersecurity PhD research funded by Cisco with engineering experience at AWS.</p><p>We examine how your system is built, what can go wrong and which evidence supports its safeguards. That technical understanding shapes the case we put in front of insurers.</p></div>
-            </section>
-
-            <section className="for-companies section-split" aria-labelledby="companies-title" data-reveal>
-              <div><p className="section-label">For technology companies</p><h2 id="companies-title">Help insurers understand your deployment.</h2></div>
-              <div><p>We bring together how your system works, what could go wrong and the safeguards in place. Use that evidence to make the case for cover that fits your operations.</p><ContactButton /></div>
+              <div><p className="section-label">Why Boundry</p><h2 id="why-boundry-title">Built by technical experts.</h2></div>
+              <div><p>Our background combines AI and cybersecurity PhD research funded by Cisco with engineering experience at AWS.</p></div>
             </section>
 
             <section className="partner-panel" aria-labelledby="partners-title" data-reveal>
-              <div><p className="section-label">For brokers, MGAs and insurers</p><h2 id="partners-title">Understand the deployment.<br />Assess the risk.</h2></div>
-              <div><p>Assess autonomous systems with structured technical evidence, clear failure scenarios and an explicit view of what remains uncertain.</p><p>Connect with robotics and AI companies seeking specialist cover, with the technical context to assess their deployments.</p><ContactButton variant="outline">Discuss a partnership</ContactButton></div>
+              <div><p className="section-label">For brokers, MGAs and insurers</p><h2 id="partners-title">Reach robotics and AI companies.</h2></div>
+              <div><p>Connect with companies seeking cover, with technical assessments to support your underwriting.</p><ContactButton variant="outline">Discuss a partnership</ContactButton></div>
             </section>
 
             <section className="closing" aria-labelledby="closing-title" data-reveal><h2 id="closing-title">Make autonomous work insurable,<br />so it can scale.</h2><ContactButton variant="butter" /></section>

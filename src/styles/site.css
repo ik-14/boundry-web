@@ -50,7 +50,6 @@ h1 .highlight{display:table;background:var(--butter);padding:0 .1em .07em;margin
 .section-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:3rem;align-items:center}
 h2{font-size:clamp(2.15rem,4.2vw,3.2rem);font-weight:500;line-height:1.06;letter-spacing:-.045em;min-width:0;overflow-wrap:break-word}
 .section-split>p,.section-split>div>p:not(.section-label){font-size:1.0625rem;line-height:1.6;max-width:27rem}
-.intro{padding:4.5rem 0}
 .section-heading{display:flex;align-items:end;justify-content:space-between;gap:2rem;margin-bottom:1.6rem}
 .section-heading h2{font-size:1.875rem;line-height:1.2;letter-spacing:-.035em}
 .section-heading p{font-size:.875rem;line-height:1.5;color:var(--muted)}
@@ -63,32 +62,15 @@ h2{font-size:clamp(2.15rem,4.2vw,3.2rem);font-weight:500;line-height:1.06;letter
 .domain-copy{padding:1.2rem 1.25rem 1.4rem}
 .domain-copy h3{font-size:1.125rem;line-height:1.3;font-weight:500;letter-spacing:-.02em;margin-bottom:.65rem}
 .domain-copy p{font-size:1rem;line-height:1.5;color:var(--muted)}
-.risk-profile{padding:4.75rem 0;align-items:start}
-.risk-profile-intro{padding-top:1rem}
-.risk-profile-intro h2{font-size:clamp(2.15rem,3.6vw,2.9rem);max-width:29rem}
-.risk-profile-intro>p:last-child{margin-top:1.5rem}
-.risk-profile-example{min-width:0;background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden}
-.risk-profile-header{padding:1.4rem 1.5rem 1.25rem;background:var(--butter)}
-.example-label{display:block;font-size:.75rem;line-height:1.4;margin-bottom:.5rem;color:var(--muted)}
-.risk-profile-header h3{font-size:1.3rem;line-height:1.25;font-weight:500;letter-spacing:-.025em}
-.risk-profile-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem 1.25rem;margin:0;padding:1.5rem}
-.risk-profile-details dt{font-size:.8125rem;font-weight:600;line-height:1.4;margin-bottom:.4rem}
-.risk-profile-details dd{font-size:.9375rem;line-height:1.5;color:var(--muted);margin:0}
-.risk-profile-question{border-top:1px solid var(--line);padding:1.2rem 1.5rem 1.4rem}
-.risk-profile-question span{display:block;font-size:.75rem;color:var(--muted);margin-bottom:.4rem}
-.risk-profile-question p{font-size:1rem;line-height:1.5}
-.why-boundry{padding:3.5rem 0;border-block:1px solid var(--line)}
-.why-boundry>div>p+p{margin-top:1.1rem}
-.for-companies{padding:4.75rem 0}
+.why-boundry{margin-block:3.5rem;padding:3rem 0;border-block:1px solid var(--line)}
 .section-label{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-bottom:1.1rem}
-.for-companies .button{margin-top:1.4rem}
 .partner-panel{position:relative;isolation:isolate;overflow:clip;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:2.5rem;align-items:center;background:var(--lilac);padding:3rem 2.5rem;border-radius:20px}
 .partner-panel>div{position:relative;z-index:1}
 .partner-panel h2{font-size:clamp(2rem,3.5vw,2.7rem);line-height:1.09}
 .partner-panel p:not(.section-label){font-size:1rem;line-height:1.6;max-width:27rem}
 .partner-panel p+p{margin-top:1.1rem}
 .partner-panel .section-label{color:var(--ink)}
-.process-film{padding:0 0 4.5rem}
+.process-film{padding:3.5rem 0}
 .process-film-heading h2{max-width:32rem}
 .process-film-figure{width:min(100%,1020px);margin:2rem auto 0}
 .process-film-media{position:relative;width:100%;aspect-ratio:4/3;background:var(--paper);isolation:isolate}
@@ -111,9 +93,7 @@ h2{font-size:clamp(2.15rem,4.2vw,3.2rem);font-weight:500;line-height:1.06;letter
 @keyframes ring-bob{from{transform:translateY(0) scale(1)}to{transform:translateY(10px) scale(.96)}}
 @media(min-width:1400px){.hero{min-height:700px}}
 @media(max-width:850px){.site{padding-inline:1.75rem}.hero{gap:1.5rem}.hero-collage{min-height:400px}.robot-float{height:310px}.rover-float{height:150px}.agent-paper{bottom:12px}.agent-float{padding:7px}.coral-ring{width:76px;height:76px}.ring-float{border-width:24px}.domain-image{height:210px}.domain-copy{padding:1rem}.section-split{gap:2rem}.partner-panel{padding:2rem;gap:2rem}.closing{gap:1.5rem}.closing .button{max-width:16rem}}
-@media(max-width:650px){.site{padding-inline:1.5rem}.site-header{min-height:84px}.wordmark{font-size:1.75rem}.site-header nav{font-size:.8125rem}.hero{grid-template-columns:minmax(0,1fr);gap:2rem;min-height:0;padding:2rem 0 3rem}h1{font-size:clamp(2.35rem,10.8vw,4.25rem)}.hero-description{font-size:1rem;max-width:28rem;margin-top:1.5rem}.hero .button{margin-top:1.5rem}.hero-collage{width:min(100%,400px);justify-self:center;min-height:330px;margin-top:1rem}.robot-paper{width:70%}.robot-float{height:260px;padding:10px}.rover-paper{width:45%;left:3%}.rover-float{height:130px;padding:7px}.agent-paper{width:47%;right:2%;bottom:12px}.coral-ring{width:70px;height:70px;right:5%}.ring-float{border-width:22px}.section-split{grid-template-columns:minmax(0,1fr);gap:1.5rem}h2{font-size:2.4rem;letter-spacing:-.045em}.section-split>p,.section-split>div>p:not(.section-label){font-size:1rem}.intro{padding:3rem 0}.section-heading{align-items:start;flex-direction:column;gap:.75rem}.section-heading h2{font-size:1.75rem}.domain-grid{grid-template-columns:minmax(0,1fr);gap:1.25rem}.domain-image{height:260px}.domain-copy{padding:1.15rem 1.25rem 1.3rem}.for-companies{padding:3.25rem 0}.partner-panel{grid-template-columns:minmax(0,1fr);gap:1.5rem;padding:2rem 1.5rem;border-radius:18px}.partner-panel h2{font-size:2.15rem}.process-film{padding-bottom:3rem}.process-film-figure{margin-top:1.5rem}.process-film-controls{margin-top:.25rem}.closing{flex-direction:column;align-items:start;gap:1.75rem;padding:2.5rem 0 3rem}.closing h2{font-size:2.3rem}.closing .button{max-width:100%}.site-footer{flex-wrap:wrap;gap:.5rem}.button{font-size:.875rem;padding:1rem 1.3rem}}
+@media(max-width:650px){.site{padding-inline:1.5rem}.site-header{min-height:84px}.wordmark{font-size:1.75rem}.site-header nav{font-size:.8125rem}.hero{grid-template-columns:minmax(0,1fr);gap:2rem;min-height:0;padding:2rem 0 3rem}h1{font-size:clamp(2.35rem,10.8vw,4.25rem)}.hero-description{font-size:1rem;max-width:28rem;margin-top:1.5rem}.hero .button{margin-top:1.5rem}.hero-collage{width:min(100%,400px);justify-self:center;min-height:330px;margin-top:1rem}.robot-paper{width:70%}.robot-float{height:260px;padding:10px}.rover-paper{width:45%;left:3%}.rover-float{height:130px;padding:7px}.agent-paper{width:47%;right:2%;bottom:12px}.coral-ring{width:70px;height:70px;right:5%}.ring-float{border-width:22px}.section-split{grid-template-columns:minmax(0,1fr);gap:1.5rem}h2{font-size:2.4rem;letter-spacing:-.045em}.section-split>p,.section-split>div>p:not(.section-label){font-size:1rem}.section-heading{align-items:start;flex-direction:column;gap:.75rem}.section-heading h2{font-size:1.75rem}.domain-grid{grid-template-columns:minmax(0,1fr);gap:1.25rem}.domain-image{height:260px}.domain-copy{padding:1.15rem 1.25rem 1.3rem}.partner-panel{grid-template-columns:minmax(0,1fr);gap:1.5rem;padding:2rem 1.5rem;border-radius:18px}.partner-panel h2{font-size:2.15rem}.process-film{padding:3rem 0 2.5rem}.process-film-figure{margin-top:1.5rem}.process-film-controls{margin-top:.25rem}.closing{flex-direction:column;align-items:start;gap:1.75rem;padding:2.5rem 0 3rem}.closing h2{font-size:2.3rem}.closing .button{max-width:100%}.site-footer{flex-wrap:wrap;gap:.5rem}.button{font-size:.875rem;padding:1rem 1.3rem}}
 @media(max-width:360px){.site{padding-inline:1.25rem}.hero-collage{min-height:290px}.robot-float{height:215px}.rover-float{height:110px}.domain-image{height:230px}}
-@media(max-width:850px) and (min-width:651px){.risk-profile{grid-template-columns:minmax(0,1fr);gap:2rem}.risk-profile-intro{display:grid;grid-template-columns:1fr 1fr;gap:0 2rem}.risk-profile-intro .section-label{grid-column:1/-1}.risk-profile-intro>p:last-child{margin-top:0}.risk-profile-example{width:100%}}
-@media(max-width:650px){.risk-profile{padding:3rem 0;gap:1.75rem}.risk-profile-intro{padding-top:0}.risk-profile-intro h2{font-size:2.25rem}.risk-profile-intro>p:last-child{margin-top:1.25rem}.risk-profile-header{padding:1.25rem}.risk-profile-details{gap:1.3rem 1rem;padding:1.25rem}.risk-profile-question{padding:1.1rem 1.25rem 1.25rem}.why-boundry{padding:2.75rem 0}.why-boundry h2{font-size:2.25rem}}
-@media(max-width:400px){.risk-profile-details{grid-template-columns:minmax(0,1fr);gap:1.15rem}}
+@media(max-width:650px){.why-boundry{margin-block:2.75rem;padding:2.5rem 0}.why-boundry h2{font-size:2.25rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.domain-card:hover .domain-image img{transform:none}}

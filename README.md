@@ -41,4 +41,6 @@ The video plays silently when visible, pauses offscreen or in hidden tabs, and p
 
 ## Positioning
 
-The homepage presents insurance and risk intelligence for autonomous systems, includes a worked warehouse-robot assessment and a Why Boundry section connecting AI/cybersecurity PhD research funded by Cisco with engineering experience at AWS. It makes no ongoing-monitoring promise. All credentials are founder-supplied; the sample assessment and technology imagery are illustrative.
+The homepage presents insurance and risk intelligence for autonomous systems, uses the film to explain the assessment approach and includes a Why Boundry section connecting AI/cybersecurity PhD research funded by Cisco with engineering experience at AWS. It makes no ongoing-monitoring promise. All credentials are founder-supplied; the sample assessment and technology imagery are illustrative.
+
+The concise page contains the hero, assessment film, technology examples, technical credentials, insurer-partner invitation and closing vision. The standalone problem, deployment-risk-profile and technology-company sections were removed to avoid repeating the same explanation.
