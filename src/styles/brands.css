@@ -1,8 +1,8 @@
 .technical-credentials { line-height: 1.9; }
 .credential-brand { white-space: nowrap; }
 .credential-logo { display: inline-block; object-fit: contain; vertical-align: middle; margin-inline: .2rem; }
-.credential-logo--cisco { width: 70px; height: 38px; margin-block: .2rem; }
-.credential-logo--aws { width: 48px; height: auto; margin-block: .3rem; }
+.credential-logo--cisco { width: 52px; height: auto; margin-block: .1rem; }
+.credential-logo--aws { width: 36px; height: auto; margin-block: .15rem; }
 .backing { gap: .7rem; }
 .backing .backing-logo-link { display: inline-flex; align-items: center; min-height: 44px; border-radius: 3px; }
 .backing-logo { display: block; width: 174px; height: auto; }
