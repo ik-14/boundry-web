@@ -1,4 +1,14 @@
-# Boundry film sources
+# Boundry media sources
+
+## Brand logos
+
+Added on 2026-11-25 at the user's request. Logos retain their original geometry and colours and are stored locally as SVGs. The adjacent wording identifies team research funding, engineering experience and EF backing; the logos do not add a partnership claim.
+
+| Asset | Official source | Format |
+| --- | --- | --- |
+| `public/assets/brands/aws.svg` | [AWS homepage](https://aws.amazon.com/), original inline `aws-brand-logo` SVG | 477.88 × 295.80 viewBox; case normalised to `viewBox` for standalone XML |
+| `public/assets/brands/cisco.svg` | [Cisco newsroom logo](https://newsroom.cisco.com/etc/designs/r/newsroom/clientlibs/clientlib-header/resources/img/cisco-logo.svg) | 108 × 57 SVG |
+| `public/assets/brands/entrepreneur-first.svg` | [Entrepreneur First wordmark](https://www.joinef.com/wp-content/themes/joinef2023/img/framework/logo-new.svg) | 173.65 × 12.33 SVG |
 
 ## Current film: AI in motion (v3)
 

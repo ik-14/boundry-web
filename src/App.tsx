@@ -4,6 +4,7 @@ import { TechnologyCard } from './components/TechnologyCard'
 import { technologies } from './data/technologies'
 import { useSiteMotion } from './motion/useSiteMotion'
 import { SiteHeader } from './components/SiteHeader'
+import { TechnicalCredentials } from './components/TechnicalCredentials'
 import { SectorPage } from './pages/SectorPage'
 import { InsurersPage } from './pages/InsurersPage'
 import { sectors } from './data/sectors'
@@ -182,7 +183,7 @@ function App({ pathname = '/' }: { pathname?: string }) {
               <h1 id="hero-title"><span className="hero-line"><span data-depth="-4">Insurance for a world</span></span><span className="hero-line hero-line--accent"><span className="highlight-layer" data-depth="14"><span className="highlight">built with AI.</span></span></span></h1>
               <p className="hero-description">We assess AI software, robots and intelligent hardware, helping insurers understand the risk and companies make the case for cover.</p>
               <ContactButton />
-              <p className="backing">Backed by <a className="text-link" href="https://www.joinef.com/" target="_blank" rel="noopener noreferrer" aria-label="Entrepreneur First — opens in a new tab">Entrepreneur First</a></p>
+              <p className="backing">Backed by <a className="backing-logo-link" href="https://www.joinef.com/" target="_blank" rel="noopener noreferrer" aria-label="Entrepreneur First — opens in a new tab"><img className="backing-logo" src="/assets/brands/entrepreneur-first.svg" alt="Entrepreneur First" width="173.65" height="12.33" decoding="async" /></a></p>
             </div>
           </section>
 
@@ -231,7 +232,7 @@ function App({ pathname = '/' }: { pathname?: string }) {
                 <span className="proof-mark" aria-hidden="true" />
                 <p className="section-label">Why Boundry</p>
                 <h3 id="why-boundry-title">Built by technical experts.</h3>
-                <p className="credentials">Our background combines AI and cybersecurity PhD research funded by Cisco with engineering experience at AWS.</p>
+                <TechnicalCredentials />
                 </div>
               </aside>
             </section>

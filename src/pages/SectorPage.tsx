@@ -1,5 +1,6 @@
 import { ContactButton } from '../components/ContactButton'
 import { TechnologyDiagram } from '../components/TechnologyCard'
+import { TechnicalCredentials } from '../components/TechnicalCredentials'
 import type { Sector } from '../data/sectors'
 
 export function SectorPage({ sector }: { sector: Sector }) {
@@ -81,7 +82,7 @@ export function SectorPage({ sector }: { sector: Sector }) {
             <span className="proof-mark" aria-hidden="true" />
             <p className="section-label">Why Boundry</p>
             <h3 id="expertise-title">Built by technical experts.</h3>
-            <p>Our background combines AI and cybersecurity PhD research funded by Cisco with engineering experience at AWS.</p>
+            <TechnicalCredentials />
           </div>
         </aside>
       </section>

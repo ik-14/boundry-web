@@ -1,4 +1,5 @@
 import { ContactButton } from '../components/ContactButton'
+import { TechnicalCredentials } from '../components/TechnicalCredentials'
 
 const partnershipBenefits = [
   {
@@ -72,7 +73,7 @@ export function InsurersPage() {
         <div data-reveal>
           <p className="section-label">Why Boundry</p>
           <h2 id="insurer-expertise-title">Technical expertise<br />on your side of the table.</h2>
-          <p className="insurer-credentials">Our background combines AI and cybersecurity PhD research funded by Cisco with engineering experience at AWS.</p>
+          <TechnicalCredentials className="insurer-credentials" />
         </div>
         <div className="appetite-note" data-reveal>
           <h3>Start with what you want to understand.</h3>

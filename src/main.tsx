@@ -5,6 +5,7 @@ import './styles/motion.css'
 import './styles/cards.css'
 import './styles/navigation.css'
 import './styles/pages.css'
+import './styles/brands.css'
 import App from './App'
 import { getPageMeta, origin } from './routes'
 
